@@ -2,6 +2,7 @@ format compact
 format long
 clc; clear;
 close all
+%This program is used to estimate the proper initial velocity of the  projectile of the robot
 
 n = 10*10^6;    % Variable Declaration
 time = zeros(1,n);
