@@ -1,0 +1,75 @@
+#include <Servo.h>
+
+
+Servo Servo1;
+Servo Servo2;
+
+
+//Joystick Pins
+    int x_key = A0;                                               
+    int y_key = A1;                                               
+    int x_pos;
+    int y_pos;
+    //Initializing variables to store data
+    int motor_speed;
+    int PWMvalue;
+
+    
+void setup ( ) {
+  Serial.begin(9600);
+  Servo1.attach(9); //associate the object to a pin
+  Servo2.attach(10);
+  delay(1000);
+  
+
+      //Initializng the joystick pins as input
+      pinMode (x_key, INPUT) ;                     
+      pinMode (y_key, INPUT) ;
+
+  
+ // Serial.println("type in a percent, and I will output your PWM.\n");
+  
+}
+
+
+void loop() {
+        x_pos = analogRead (x_key) ;
+        y_pos = analogRead (y_key);
+  
+  
+ int PWMvalue1 = (x_pos -512)*.75 + 1500; //scale up to 1000-2000
+ int PWMvalue2 = (y_pos -512)*.75 +1500;
+
+Serial.println(PWMvalue1);
+Serial.println(PWMvalue2);
+
+      
+    if(x_pos < 450 && y_pos < 450){     //Rotating the left motor in clockwise direction
+      
+       Servo1.writeMicroseconds(PWMvalue1);
+       Servo2.writeMicroseconds(PWMvalue2);
+      }
+  else if(x_pos > 450 && x_pos <550){  //Motors will not move when the joystick will be at center
+        
+        Servo1.writeMicroseconds(PWMvalue1);
+        Servo2.writeMicroseconds(PWMvalue2);
+      }
+      
+   else if(x_pos > 550 && y_pos > 550)
+   { 
+        Servo1.writeMicroseconds(PWMvalue1);
+        Servo2.writeMicroseconds(PWMvalue2);
+        }
+        else if (x_pos < 450 && y_pos >550)
+        {
+        Servo1.writeMicroseconds(PWMvalue1);
+        Servo2.writeMicroseconds(PWMvalue2);
+        }
+
+        else if (x_pos > 550 && y_pos < 450)
+        {
+        Servo1.writeMicroseconds(PWMvalue1);
+        Servo2.writeMicroseconds(PWMvalue2);
+        }
+        
+    }
