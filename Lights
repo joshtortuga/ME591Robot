@@ -1,0 +1,80 @@
+
+int ledPinR = 8;
+int ledPinG = 12;
+int ledPinB = 10;
+
+void setup()  { 
+} 
+
+/* Note:
+When driving LED's using common anode LED AMP's you have to inverse the duty cycle,
+i. e. 255 is off and 0 is full power.
+*/
+
+void loop()  { 
+  // Red
+  for(int fadeValue = 255 ; fadeValue >= 0; fadeValue -=5) { 
+    analogWrite(ledPinR, fadeValue);         
+    delay(40);                            
+  }
+  for(int fadeValue = 0 ; fadeValue <= 255; fadeValue +=5) { 
+    analogWrite(ledPinR, fadeValue);         
+    delay(40);
+  } 
+  // Purple
+  for(int fadeValue = 255 ; fadeValue >= 0; fadeValue -=5) { 
+    analogWrite(ledPinR, fadeValue);         
+    analogWrite(ledPinB, fadeValue);
+    delay(40);                            
+  } 
+  for(int fadeValue = 0 ; fadeValue <= 255; fadeValue +=5) { 
+    analogWrite(ledPinR, fadeValue);         
+    analogWrite(ledPinB, fadeValue);
+    delay(40);
+  } 
+
+  // Blue
+  for(int fadeValue = 255 ; fadeValue >= 0; fadeValue -=5) { 
+    analogWrite(ledPinB, fadeValue);         
+    delay(40);                            
+  } 
+  for(int fadeValue = 0 ; fadeValue <= 255; fadeValue +=5) { 
+    analogWrite(ledPinB, fadeValue);         
+    delay(40);
+  } 
+
+  // Teal
+  for(int fadeValue = 255 ; fadeValue >= 0; fadeValue -=5) { 
+    analogWrite(ledPinG, fadeValue);         
+    analogWrite(ledPinB, fadeValue);
+    delay(40);                            
+  } 
+  for(int fadeValue = 0 ; fadeValue <= 255; fadeValue +=5) { 
+    analogWrite(ledPinG, fadeValue);         
+    analogWrite(ledPinB, fadeValue);
+    delay(40);
+  }
+  
+  // Green
+  for(int fadeValue = 255 ; fadeValue >= 0; fadeValue -=5) { 
+    analogWrite(ledPinG, fadeValue);         
+    delay(40);                            
+  } 
+  for(int fadeValue = 0 ; fadeValue <= 255; fadeValue +=5) { 
+    analogWrite(ledPinG, fadeValue);         
+    delay(40);
+  } 
+  // White
+  for(int fadeValue = 255 ; fadeValue >= 0; fadeValue -=5) { 
+    analogWrite(ledPinR, fadeValue);         
+    analogWrite(ledPinB, fadeValue);
+    analogWrite(ledPinG, fadeValue);
+    delay(40);                            
+  } 
+  for(int fadeValue = 0 ; fadeValue <= 255; fadeValue +=5) { 
+    analogWrite(ledPinR, fadeValue);         
+    analogWrite(ledPinB, fadeValue);
+    analogWrite(ledPinG, fadeValue);
+    delay(40);
+  }
+}
